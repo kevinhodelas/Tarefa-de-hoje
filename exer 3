@@ -1,0 +1,125 @@
+class Main {
+  
+  private No primeiro;
+  private No ultimo;
+  private String nomedalista;
+
+  
+  public Main(String nome){
+    nomedalista = nome;
+      primeiro = ultimo = null;
+  }
+
+  public Main (){
+    nomedalista = "Troca: ";
+    primeiro = ultimo = null;
+  }
+
+  public void Inserenafrente(String item){
+    if (vazia())
+      primeiro = ultimo = new No (item);
+    else
+      primeiro = new No (item, primeiro); 
+  }
+
+  public void Inserenofundo(String item){
+    if (vazia())
+    primeiro = ultimo = new No (item);
+    else{
+      ultimo.setProx(new No (item));
+        ultimo = ultimo.getProx();
+    }
+  }
+
+  public String Removenafrente(){
+    if (vazia()){
+    return null;
+  }
+
+  String item = primeiro.getLista();
+   if (primeiro == ultimo)
+     primeiro = ultimo = null;
+
+      else
+        primeiro = primeiro.getProx();
+          return item;
+  }
+
+  public String Removenofundo (){
+    if (vazia()){
+      return null;
+    }
+
+    String item = ultimo.getLista();
+    if (primeiro == ultimo)
+    primeiro = ultimo = null;
+    else{
+      No atual = primeiro;
+        while (atual.getProx() != ultimo)
+          atual = atual.getProx();
+            ultimo = atual;
+              atual.setProx(null);
+    }
+    return item;
+  }
+
+  public boolean vazia(){
+    return primeiro == null;
+  }
+  
+  public String Escrevelista (){
+    String temp = "";
+    if (vazia()){
+      temp += "vazia" + nomedalista;
+      return temp;
+    } // if vazia
+      temp += "Os da " + nomedalista + "\n\n";
+        No atual = primeiro;
+          while (atual != null){
+             temp += atual.getLista() + ", ";
+                 atual = atual.getProx();
+    }
+    temp += "\n";
+    return temp;
+  }
+  public String exibeprim(){
+    if (primeiro == null) 
+      return "primeiro: null";
+
+    else  return "primeiro: "+ primeiro.getLista();
+  }
+  public String exibeUlt(){
+    if (ultimo == null) return "ultimo: null";
+      else return "ultimo: " + ultimo.getLista();
+  } 
+  public Main intercalar(Main Lista1, Main Lista2){
+   
+    No atual = Lista1.primeiro;
+    No atual2 = Lista2.primeiro;
+    Main l3 = new Main();
+
+    while (atual != null){
+      l3.Inserenofundo(atual.getLista());
+      l3.Inserenofundo(atual2.getLista());
+      System.out.println(atual.getLista());
+      System.out.println(atual2.getLista());
+      atual = atual.getProx();
+      atual2 = atual2.getProx();
+      
+  }
+  return l3;
+  }
+  public static void main(String[] args) { 
+    Main l1 = new Main();
+    Main l2 = new Main();
+    l1.Inserenafrente("José");
+    l1.Inserenafrente("Rodrigo");
+    l1.Inserenofundo("Amanda");
+
+    l2.Inserenafrente("Josi");
+    l2.Inserenafrente("Fabio");
+    l2.Inserenafrente("Leticia");
+
+    l1.intercalar(l1, l2);
+  }
+}
