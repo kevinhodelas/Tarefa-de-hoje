@@ -1,0 +1,111 @@
+class Main {
+  
+  privado Não primeiro;
+  privado No ultimo;
+  String nomedalista privada;
+
+  public Main (String nome) {
+    nomedalista = nome;
+    primeiro = ultimo = nulo;
+  }
+
+  public Main () {
+    nomedalista = "Funcinários da ACME:";
+    primeiro = ultimo = nulo;
+  }
+
+  public void Inserenafrente (String item, int idade) {
+    se (vazio ())
+    primeiro = ultimo = novo Não (item);
+    senão
+    primeiro = novo Não (item, primeiro); 
+  }
+
+  public void Inserenofundo (String item, int idade) {
+    if (vazio ()) {
+    primeiro = ultimo = novo Não (item);
+    }
+
+    senão{ 
+    ultimo.setProx (novo Não (item));
+      ultimo = ultimo.getProx ();
+    }
+  }
+
+  public String Removenafrente () {
+    if (Vazia ()) {
+      return null;
+  }
+  String item = primeiro.getnomeDoFuncionario ();
+    if (primeiro == ultimo)
+      primeiro = ultimo = nulo;
+
+    senão 
+    primeiro = primeiro.getProx ();
+      devolver item;
+  }
+
+  public String Removenofundo () {
+    if (Vazia ()) {
+      return null;
+  }
+    String item = ultimo.getnomeDoFuncionario ();
+    if (primeiro == ultimo)
+      primeiro = ultimo = nulo;
+        senão {
+          Não atual = primeiro;
+      while (atual.getProx ()! = ultimo)
+        atual = atual.getProx ();
+          ultimo = atual;
+            atual.getProx (null);
+    }
+    devolver item;
+  }
+
+  public boolean vazio () {
+    return primeiro == null;
+  }
+  
+  public String Escrevelista () {
+    String temp = "";
+      if (vazia ()) {
+      temp + = "vazia" + nomedalista;
+        return temp;
+    } 
+    temp + = "Os da" + nomedalista + "\ n \ n";
+      Não atual = primeiro;
+        while (atual! = null) {
+          temp + = atual.getnomeDoFuncionario () + ",";
+            atual = atual.getProx ();
+    }
+    temp + = "\ n";
+    return temp;
+  }
+  public String exibePrimeiro () {
+    if (primeiro == null) return "primeiro: null";
+    else return "primeiro:" + primeiro.getnomeDoFuncionario ();
+  }
+  public String exibeUltimo () {
+    if (ultimo == null) retorna "ultimo: null";
+    caso contrário, retorne "ultimo:" + ultimo.getnomeDoFuncionario ();
+  } 
+  
+   public String (String nomeDoFuncionario) {
+    Não atual = primeiro;
+      while (atual! = null) {
+        if (atual.getnomeDoFuncionario () == nomeDoFuncionario) {  
+          return atual.getnomeDoFuncionario ();
+    } 
+     atual = atual.getProx ();
+  }
+  retornar "Valor não encontrado.";
+  }
+
+  public static void main (String [] args) { 
+    Principal l1 = novoprincipal ();
+    l1.Inserenafrente ("João", 30);
+    l1.Inserenafrente ("Maria", 31);
+    l1.Inserenafrente ("Carlos", 23);
+    l1.Inserenofundo ("Pedro", 28);
+    System.out.println (l1.consulta (""));
+  }
